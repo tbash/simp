@@ -4,6 +4,10 @@ defmodule DemoTest do
   doctest Demo.Hello
 
   test "greets the world" do
-    assert Demo.Hello.run() == :world
+    assert Demo.Hello.world() == :world
+  end
+
+  test "converst string to uppercase" do
+    assert %{"data" => "ABCD"} = Demo.Hello.upcase(%{"data" => "abcD"})
   end
 end

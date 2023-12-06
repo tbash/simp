@@ -7,7 +7,7 @@ defmodule DemoWeb.Endpoint do
   plug :dispatch
 
   get "/hello" do
-    case Demo.Hello.run() do
+    case Demo.Hello.world() do
       :world ->
         conn
         |> put_status(:ok)
@@ -16,6 +16,19 @@ defmodule DemoWeb.Endpoint do
       _ ->
         conn
         |> send_resp(200, "")
+    end
+  end
+
+  post "/upcase" do
+    case conn.body_params do
+      %{"data" => _} = params ->
+        conn
+        |> put_status(:ok)
+        |> json(Demo.Hello.upcase(params))
+
+      _ ->
+        conn
+        |> send_resp(422, "missing key data")
     end
   end
 
