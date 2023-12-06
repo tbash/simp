@@ -1,9 +1,9 @@
 defmodule DemoTest do
   use ExUnit.Case
 
-  doctest Demo
+  doctest Demo.Hello
 
   test "greets the world" do
-    assert Demo.hello() == :world
+    assert Demo.Hello.run() == :world
   end
 end

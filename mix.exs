@@ -15,7 +15,7 @@ defmodule Demo.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Demo.Application, []}
+      mod: {Demo, []}
     ]
   end
 
@@ -23,8 +23,7 @@ defmodule Demo.MixProject do
   defp deps do
     [
       {:plug_cowboy, "~> 2.5"},
-      {:jason, "~> 1.0"},
-      {:phoenix, "~> 1.6"}
+      {:jason, "~> 1.0"}
     ]
   end
 end
