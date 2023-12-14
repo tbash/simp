@@ -1,4 +1,4 @@
-defmodule DemoWeb.Endpoint do
+defmodule SimpWeb.Endpoint do
   use Plug.Router
 
   plug Plug.Logger
@@ -6,8 +6,16 @@ defmodule DemoWeb.Endpoint do
   plug Plug.Parsers, parsers: [:json], json_decoder: Jason
   plug :dispatch
 
+  defp json(%Plug.Conn{resp_headers: resp_headers} = conn, data) do
+    content_type = "application/json; charset=utf-8"
+    response = Jason.encode_to_iodata!(data)
+
+    %Plug.Conn{conn | resp_headers: [{"content-type", content_type} | resp_headers]}
+    |> Plug.Conn.send_resp(conn.status || 200, response)
+  end
+
   get "/hello" do
-    case Demo.Hello.world() do
+    case Simp.Hello.world() do
       :world ->
         conn
         |> put_status(:ok)
@@ -24,20 +32,12 @@ defmodule DemoWeb.Endpoint do
       %{"data" => _} = params ->
         conn
         |> put_status(:ok)
-        |> json(Demo.Hello.upcase(params))
+        |> json(Simp.Hello.upcase(params))
 
       _ ->
         conn
         |> send_resp(422, "missing key data")
     end
-  end
-
-  defp json(%Plug.Conn{resp_headers: resp_headers} = conn, data) do
-    content_type = "application/json; charset=utf-8"
-    response = Jason.encode_to_iodata!(data)
-
-    %Plug.Conn{conn | resp_headers: [{"content-type", content_type} | resp_headers]}
-    |> Plug.Conn.send_resp(conn.status || 200, response)
   end
 
   match _ do

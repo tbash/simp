@@ -1,6 +1,6 @@
-defmodule Demo do
+defmodule Simp do
   @moduledoc """
-  Application for `Demo`.
+  Application for `Simp`.
   """
 
   use Application
@@ -10,12 +10,12 @@ defmodule Demo do
     children = [
       Plug.Cowboy.child_spec(
         scheme: :http,
-        plug: DemoWeb.Endpoint,
-        options: [port: Application.get_env(:demo, :port)]
+        plug: SimpWeb.Endpoint,
+        options: [port: Application.get_env(:simp, :port)]
       )
     ]
 
-    opts = [strategy: :one_for_one, name: Demo.Supervisor]
+    opts = [strategy: :one_for_one, name: Simp.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

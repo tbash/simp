@@ -1,15 +1,15 @@
-defmodule DemoWebTest do
+defmodule SimpWebTest do
   use ExUnit.Case, async: true
   use Plug.Test
 
   alias Plug.Conn
 
-  @opts DemoWeb.Endpoint.init([])
+  @opts SimpWeb.Endpoint.init([])
 
   test "GET /hello returns expected data" do
     conn =
       conn(:get, "/hello")
-      |> DemoWeb.Endpoint.call(@opts)
+      |> SimpWeb.Endpoint.call(@opts)
 
     assert %{"data" => "Hello, World!"} = json_response(conn, 200)
   end
@@ -17,15 +17,15 @@ defmodule DemoWebTest do
   test "POST /upcase returns expected data" do
     conn =
       conn(:post, "/upcase", %{data: "abcD"})
-      |> DemoWeb.Endpoint.call(@opts)
+      |> SimpWeb.Endpoint.call(@opts)
 
-    assert %{data: "ABCD"} = json_response(conn, 200)
+    assert %{"data" => "ABCD"} = json_response(conn, 200)
   end
 
   test "it returns 404 when no route matches" do
     conn =
       conn(:get, "/not-found")
-      |> DemoWeb.Endpoint.call(@opts)
+      |> SimpWeb.Endpoint.call(@opts)
 
     assert conn.status == 404
   end

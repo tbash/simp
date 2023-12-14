@@ -1,3 +1,3 @@
 import Config
 
-config :demo, port: 4001
+config :simp, port: 4001

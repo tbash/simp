@@ -1,9 +1,9 @@
-defmodule Demo.MixProject do
+defmodule Simp.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :demo,
+      app: :simp,
       version: "0.1.0",
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
@@ -15,7 +15,7 @@ defmodule Demo.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Demo, []}
+      mod: {Simp, []}
     ]
   end
 

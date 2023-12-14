@@ -1,6 +1,6 @@
-defmodule Demo.Hello do
+defmodule Simp.Hello do
   @moduledoc """
-  Documentation for `Demo.Hello`.
+  Documentation for `Simp.Hello`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Demo.Hello do
 
   ## Examples
 
-      iex> Demo.Hello.world()
+      iex> Simp.Hello.world()
       :world
 
   """
@@ -21,7 +21,7 @@ defmodule Demo.Hello do
 
   ## Examples
 
-      iex> Demo.Hello.upcase(%{data: "abcd"})
+      iex> Simp.Hello.upcase(%{data: "abcd"})
       %{data: "ABCD"}
 
   """
